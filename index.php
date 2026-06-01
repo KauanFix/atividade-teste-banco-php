@@ -1,11 +1,13 @@
 <?php
-session_start();
+session_start(); //inicia a sessão
 
+//Variáveis para o banco de dados
 $host = "localhost";
 $user = "root";
 $pass = "";
 $db = "sistema_simples";
-$conn = new mysqli($host, $user, $pass, $db, 6608);
+
+$conn = new mysqli($host, $user, $pass, $db, 6608); //conexão com o Banco de Dados
 
 if ($conn->connect_error) {
     die("Erro na conexão");
