@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //if para executar no envio do formu
     <h2>Login com PHP</h2>
 
     <form method="POST">
-        <label for="usuario">Usuario:</label>
+        <label for="usuario">Usuario:</label> 
         <input type="text" name="usuario">
         <br>
         <br>
@@ -66,11 +66,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //if para executar no envio do formu
     </form>
 
     <?php
-    if (isset($erro)) {
-        echo $erro;
+    if (isset($erro)) { //verifica se extiste a variável erro
+        echo $erro; //mostra a variável erro
     }
-
-
 
     ?>
 

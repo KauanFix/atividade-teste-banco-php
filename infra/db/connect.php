@@ -1,4 +1,4 @@
-<?php
+<?php //código php para inclusão no banco de dados, serve como função para usar depois
 
 $host = "localhost";
 $user = "root";
