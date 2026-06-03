@@ -20,7 +20,10 @@ O projeto foi construído utilizando as seguintes ferramentas e linguagens:
 A organização dos arquivos do projeto segue a estrutura abaixo:
 
 ```text
-ATIVIDADE_TESTE_1/
+ATIVIDADE-TESTE-BANCO-PHP/
+├── assets/
+|   └── images/
+|       └── lixeira_icon.png
 ├── infra/
 │   ├── db/
 │   │   ├── connect.php     # Configuração e conexão com o banco de dados
@@ -43,6 +46,23 @@ A lógica geral do sistema baseia-se no fluxo descrito a seguir:
 1. O usuário entra no sistema
 2. O usuário pode adicionar novos usuários
 3. O usuário pode ver a tabela mostrando os dados do Banco
+4. O usuário pode excluir usuários pelo ID
+
+---
+
+## Funcionamento da Exclusão
+A função de exclusão funciona:
+
+1. Mostrando os IDs no select por PHP
+2. Excluindo do banco tudo da tabela usuario onde o id corresponde ao selecionado quando clicar no botão
+
+---
+
+## Principais dificuldades
+As principais dificuldades encontradas foram:
+1. Ao fazer o código para excluir do banco, utilizou-se 'DELETE * FROM ...' e ocorreu um erro fatal por sintaxe
+2. Fazer com que o botão executasse o código php correspondente
+3. Realizar a troca de variáveis para mostrar exatamente o desejado
 
 ---
 
