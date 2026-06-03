@@ -9,7 +9,7 @@ if (!isset($_SESSION["usuario"])) { //se a sessão 'usuario' não existir, redir
     exit();
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") { //"no envio do formulário"
+if ($_SERVER["REQUEST_METHOD"] == "POST") { //"no envio do formulário de cadastro"
     if (isset($_POST["cadastrar"])) {
         $usuarios = $_POST["usuario"]; //pega os dados do formulário de cadastro
         $senha = $_POST["senha"];
@@ -79,7 +79,7 @@ if (isset($_POST["excluir"])) { //"quando postar o botão de name 'excluir' faç
             <select name="excluirUsuario" id="selectExcluir">
                 <?php
 
-                $sqlID = "SELECT id FROM usuario"; //variável para pegar i id de "usuario"
+                $sqlID = "SELECT id FROM usuario"; //variável para pegar o id de "usuario"
                 
                 $resultadoID = $conn->query($sqlID); //guardar os ids do banco
                 
