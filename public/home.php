@@ -24,11 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //"no envio do formulário"
     }
 }
 
-if(isset($_POST["excluir"])) {
+if(isset($_POST["excluir"])) { //"quando postar o botão de name 'excluir' faça isso"
 
-    $id = $_POST["excluirUsuario"];
+    $id = $_POST["excluirUsuario"]; //variável id pegar o post do select
 
-    $sql = "DELETE FROM usuario WHERE id = $id";
+    $sql = "DELETE FROM usuario WHERE id = $id"; //deleta tudo onde o id for igual do select
 
     if ($conn->query($sql) === true) { //verifica se deu certo e alerta
             echo "<script>alert('Usuário Excluído com sucesso!')</script>";
@@ -74,19 +74,19 @@ if(isset($_POST["excluir"])) {
             <select name="excluirUsuario" id="selectExcluir">
                 <?php
 
-                $sqlID = "SELECT id FROM usuario"; //variável para pegar todos os dados de "usuario"
+                $sqlID = "SELECT id FROM usuario"; //variável para pegar i id de "usuario"
                 
-                $resultadoID = $conn->query($sqlID); //guardar os dados do banco
+                $resultadoID = $conn->query($sqlID); //guardar os ids do banco
                 
                 while ($linha = $resultadoID->fetch_assoc()) { //enquanto a variável linha for igual ao resultado, ele cria uma nova linha na tabela, fetch_assoc() transforma num array associativo para o php poder ler
-                    echo "<option value=" . $linha["id"] . ">" . $linha["id"] . "</option>"; //cria uma nova linha na tabela com os dados do banco
+                    echo "<option value=" . $linha["id"] . ">" . $linha["id"] . "</option>"; //cria uma nova option com os ids
                 }
 
 
                 ?>
 
             </select>
-            <button type='submit' name="excluir">
+            <button type='submit' name="excluir"> 
                 <img src='../assets/images/lixeira_icon.png' alt='excluir usuario' height='35px' width='35px'>
             </button>
         </form>
@@ -97,11 +97,6 @@ if(isset($_POST["excluir"])) {
     <?php
 
     include("../public/component/table.php"); //pega a função de table.php
-    
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (isset($_POST["excluir"])) {
-        }
-    }
 
     ?>
 
