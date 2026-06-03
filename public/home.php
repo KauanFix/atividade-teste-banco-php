@@ -64,11 +64,11 @@ if (isset($_POST["excluir"])) { //"quando postar o botão de name 'excluir' faç
 
     <form method="POST">
         <label for="usuario">Úsuario:</label>
-        <input type="text" name="usuario">
+        <input type="text" name="usuario" required>
         <br>
         <br>
         <label for="senha">Senha:</label>
-        <input type="password" name="senha">
+        <input type="password" name="senha" required>
         <br>
         <br>
         <button type="submit" name="cadastrar">Entrar</button>
