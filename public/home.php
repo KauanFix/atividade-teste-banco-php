@@ -1,6 +1,6 @@
 <?php
 
-session_start(); 
+session_start();
 
 include("../infra/db/connect.php"); //include aquela função do connect
 
@@ -9,17 +9,32 @@ if (!isset($_SESSION["usuario"])) { //se a sessão 'usuario' não existir, redir
     exit();
 }
 
-if($_SERVER["REQUEST_METHOD"] == "POST") { //"no envio do formulário"
-    $usuarios = $_POST["usuario"]; //pega os dados do formulário de cadastro
-    $senha = $_POST["senha"];
+if ($_SERVER["REQUEST_METHOD"] == "POST") { //"no envio do formulário"
+    if (isset($_POST["cadastrar"])) {
+        $usuarios = $_POST["usuario"]; //pega os dados do formulário de cadastro
+        $senha = $_POST["senha"];
 
-    $sql = "INSERT INTO usuario (nome, senha) VALUES ('$usuarios', '$senha')"; //insere os dados no banco
+        $sql = "INSERT INTO usuario (nome, senha) VALUES ('$usuarios', '$senha')"; //insere os dados no banco
 
-    if($conn -> query($sql) === true) { //verifica se deu certo e alerta
-        echo"<script>alert('Usuário Logado com sucesso!')</script>";
-}   else {
-echo"<script>alert('ERRO!')</script>";
+        if ($conn->query($sql) === true) { //verifica se deu certo e alerta
+            echo "<script>alert('Usuário Logado com sucesso!')</script>";
+        } else {
+            echo "<script>alert('ERRO!')</script>";
+        }
+    }
 }
+
+if(isset($_POST["excluir"])) {
+
+    $id = $_POST["excluirUsuario"];
+
+    $sql = "DELETE FROM usuario WHERE id = $id";
+
+    if ($conn->query($sql) === true) { //verifica se deu certo e alerta
+            echo "<script>alert('Usuário Excluído com sucesso!')</script>";
+        } else {
+            echo "<script>alert('ERRO!')</script>";
+        }
 }
 ?>
 
@@ -37,7 +52,6 @@ echo"<script>alert('ERRO!')</script>";
 
     <p>Usuario Logado:
         <?php echo $_SESSION["usuario"]; ?>
-
     </p>
 
     <a href="logout.php">Sair</a>
@@ -45,23 +59,50 @@ echo"<script>alert('ERRO!')</script>";
     <h2>Cadastrar novo usuario</h2>
 
     <form method="POST">
-    <label for="usuario">Úsuario:</label>
-    <input type="text" name="usuario">
-    <br>
-    <br>
-    <label for="senha">Senha:</label>
-    <input type="password" name="senha">
-    <br>
-    <br>
-    <button type="submit">Entrar</button>
+        <label for="usuario">Úsuario:</label>
+        <input type="text" name="usuario">
+        <br>
+        <br>
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha">
+        <br>
+        <br>
+        <button type="submit" name="cadastrar">Entrar</button>
+
+        <form method="POST">
+            <label for="excluirUsuario">Selecione o ID para excluir o usuário</label>
+            <select name="excluirUsuario" id="selectExcluir">
+                <?php
+
+                $sqlID = "SELECT id FROM usuario"; //variável para pegar todos os dados de "usuario"
+                
+                $resultadoID = $conn->query($sqlID); //guardar os dados do banco
+                
+                while ($linha = $resultadoID->fetch_assoc()) { //enquanto a variável linha for igual ao resultado, ele cria uma nova linha na tabela, fetch_assoc() transforma num array associativo para o php poder ler
+                    echo "<option value=" . $linha["id"] . ">" . $linha["id"] . "</option>"; //cria uma nova linha na tabela com os dados do banco
+                }
+
+
+                ?>
+
+            </select>
+            <button type='submit' name="excluir">
+                <img src='../assets/images/lixeira_icon.png' alt='excluir usuario' height='35px' width='35px'>
+            </button>
+        </form>
+
 
     </form>
 
     <?php
-    
+
     include("../public/component/table.php"); //pega a função de table.php
     
-    
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST["excluir"])) {
+        }
+    }
+
     ?>
 
 </body>

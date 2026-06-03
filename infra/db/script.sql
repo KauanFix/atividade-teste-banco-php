@@ -11,3 +11,5 @@ CREATE TABLE IF NOT EXISTS usuario (
 INSERT INTO usuario (nome, senha) VALUES ('admin', '123');
 
 INSERT INTO usuario (nome, senha) VALUES ('kauan', 'fix');
+
+/* backup do script que faz o banco de dados*/
