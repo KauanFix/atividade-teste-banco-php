@@ -40,6 +40,25 @@ if (isset($_POST["excluir"])) { //"quando postar o botão de name 'excluir' faç
     header("Location: home.php");
     exit();
 }
+
+if (isset($_POST["editar"])) { //"quando postar o botão de name 'excluir' faça isso"
+
+    $editarId = $_POST["selectEditarUsuario"]; //variável id pegar o post do select
+    $editarUsuario = $_POST["editarUsuario"]; //pega os dados do formulário de edição
+        $editarSenha = $_POST["editarSenha"];
+
+    $sql = "UPDATE usuario
+    SET nome = '$editarUsuario', senha = '$editarSenha'
+    WHERE id = '$editarId'";
+
+    if ($conn->query($sql) === true) { //verifica se deu certo e alerta
+        echo "<script>alert('Usuário Editado com sucesso!')</script>";
+    } else {
+        echo "<script>alert('ERRO!')</script>";
+    }
+    header("Location: home.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -74,8 +93,10 @@ if (isset($_POST["excluir"])) { //"quando postar o botão de name 'excluir' faç
         <button type="submit" name="cadastrar">Entrar</button>
         <br>
 
+        <hr>
+
         <form method="POST">
-            <label for="excluirUsuario">Selecione o ID para excluir o usuário</label>
+            <label for="excluirUsuario">Selecione o ID para Excluir o usuário</label>
             <select name="excluirUsuario" id="selectExcluir">
                 <?php
 
@@ -93,6 +114,40 @@ if (isset($_POST["excluir"])) { //"quando postar o botão de name 'excluir' faç
             </select>
             <button type='submit' name="excluir">
                 <img src='../assets/images/lixeira_icon.png' alt='excluir usuario' height='35px' width='35px'>
+            </button>
+        </form>
+
+        <hr>
+
+        <form method="POST">
+            <label for="editarUsuario">Selecione o ID para Editar o usuário</label>
+            <select name="selectEditarUsuario" id="selectEditar">
+                <?php
+
+                $sqlID = "SELECT id FROM usuario"; //variável para pegar o id de "usuario"
+                
+                $resultadoID = $conn->query($sqlID); //guardar os ids do banco
+                
+                while ($linha = $resultadoID->fetch_assoc()) { //enquanto a variável linha for igual ao resultado, ele cria uma nova linha na tabela, fetch_assoc() transforma num array associativo para o php poder ler
+                    echo "<option value=" . $linha["id"] . ">" . $linha["id"] . "</option>"; //cria uma nova option com os ids
+                }
+
+
+                ?>
+                </select>
+                <br>
+                <br>
+                <label for="editarUsuario">Novo Úsuario:</label>
+                <input type="text" name="editarUsuario" required>
+                <br>
+                <br>
+                <label for="editarSenha">Nova Senha:</label>
+                <input type="password" name="editarSenha" required>
+                <br>
+
+            
+            <button type='submit' name="editar">
+                <img src='../assets/images/lapis_icon.png' alt='editar usuario' height='35px' width='35px'>
             </button>
         </form>
 
