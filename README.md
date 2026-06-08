@@ -94,6 +94,7 @@ As principais dificuldades encontradas foram:
 1. Ao fazer o código para excluir do banco, utilizou-se 'DELETE * FROM ...' e ocorreu um erro fatal por sintaxe
 2. Fazer com que o botão executasse o código php correspondente
 3. Realizar a troca de variáveis para mostrar exatamente o desejado
+4. Esquecimento das aspas ao editar no banco
 
 ---
 
@@ -103,3 +104,10 @@ A análise e o desenvolvimento deste projeto proporcionaram a consolidação de 
 * Conexão, inserção e gerenciamento do banco via php
 * Segurança com Back-end
 * Estruturação de pasta
+
+## Funcionamento da Edição
+A função de edição funciona:
+
+1. Mostrando os IDs no select por PHP
+2. Pegando os dados do formulário de edição
+3. Trocando no banco em "nome" e "senha" respectivamente
