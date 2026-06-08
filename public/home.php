@@ -16,13 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { //"no envio do formulário de cadast
 
         $sql = "INSERT INTO usuario (nome, senha) VALUES ('$usuarios', '$senha')"; //insere os dados no banco
 
-        if ($conn->query($sql) === true) { //verifica se deu certo e alerta
-            echo "<script>alert('Usuário Logado com sucesso!')</script>";
-        } else {
-            echo "<script>alert('ERRO!')</script>";
-        }
-        header("Location: home.php");
-        exit();
+        include("../public/component/ver_sucess.php");
     }
 }
 
@@ -32,13 +26,7 @@ if (isset($_POST["excluir"])) { //"quando postar o botão de name 'excluir' faç
 
     $sql = "DELETE FROM usuario WHERE id = $id"; //deleta tudo onde o id for igual do select
 
-    if ($conn->query($sql) === true) { //verifica se deu certo e alerta
-        echo "<script>alert('Usuário Excluído com sucesso!')</script>";
-    } else {
-        echo "<script>alert('ERRO!')</script>";
-    }
-    header("Location: home.php");
-    exit();
+    include("../public/component/ver_sucess.php");
 }
 
 if (isset($_POST["editar"])) { //"quando postar o botão de name 'excluir' faça isso"
@@ -51,13 +39,7 @@ if (isset($_POST["editar"])) { //"quando postar o botão de name 'excluir' faça
     SET nome = '$editarUsuario', senha = '$editarSenha'
     WHERE id = '$editarId'";
 
-    if ($conn->query($sql) === true) { //verifica se deu certo e alerta
-        echo "<script>alert('Usuário Editado com sucesso!')</script>";
-    } else {
-        echo "<script>alert('ERRO!')</script>";
-    }
-    header("Location: home.php");
-    exit();
+    include("../public/component/ver_sucess.php");
 }
 ?>
 
