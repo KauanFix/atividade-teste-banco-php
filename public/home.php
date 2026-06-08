@@ -4,10 +4,7 @@ session_start();
 
 include("../infra/db/connect.php"); //include aquela função do connect
 
-if (!isset($_SESSION["usuario"])) { //se a sessão 'usuario' não existir, redireciona para o index
-    header("location:../index.php");
-    exit();
-}
+include("../public/component/ver_section.php"); //inclui a função de verificar se a sessão tá logada
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") { //"no envio do formulário de cadastro"
     if (isset($_POST["cadastrar"])) {

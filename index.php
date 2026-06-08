@@ -1,19 +1,7 @@
 <?php
 session_start(); //inicia a sessão
 
-//Variáveis para o banco de dados
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db = "sistema_simples";
-
-$conn = new mysqli($host, $user, $pass, $db, 6608); //conexão com o Banco de Dados
-
-if ($conn->connect_error) { //if para verificar se foi realizada a conexão
-    die("Erro na conexão");
-} else {
-    echo ("<p> BD: ok </p>");
-}
+include("../infra/db/connect.php"); //include aquela função do connect
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") { //if para executar no envio do formulário de login
 
