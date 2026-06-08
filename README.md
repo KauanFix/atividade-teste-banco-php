@@ -56,6 +56,37 @@ A função de exclusão funciona:
 1. Mostrando os IDs no select por PHP
 2. Excluindo do banco tudo da tabela usuario onde o id corresponde ao selecionado quando clicar no botão
 
+## Trechos Importantes:
+```
+if (isset($_POST["excluir"])) { //"quando postar o botão de name 'excluir' faça isso"
+
+    $id = $_POST["excluirUsuario"]; //variável id pegar o post do select
+
+    $sql = "DELETE FROM usuario WHERE id = $id"; //deleta tudo onde o id for igual do select
+
+    if ($conn->query($sql) === true) { //verifica se deu certo e alerta
+        echo "<script>alert('Usuário Excluído com sucesso!')</script>";
+    } else {
+        echo "<script>alert('ERRO!')</script>";
+    }
+    header("Location: home.php");
+    exit();
+}
+```
+```
+                <?php
+
+                $sqlID = "SELECT id FROM usuario"; //variável para pegar o id de "usuario"
+                
+                $resultadoID = $conn->query($sqlID); //guardar os ids do banco
+                
+                while ($linha = $resultadoID->fetch_assoc()) { //enquanto a variável linha for igual ao resultado, ele cria uma nova linha na tabela, fetch_assoc() transforma num array associativo para o php poder ler
+                    echo "<option value=" . $linha["id"] . ">" . $linha["id"] . "</option>"; //cria uma nova option com os ids
+                }
+
+
+                ?>
+```
 ---
 
 ## Principais dificuldades
